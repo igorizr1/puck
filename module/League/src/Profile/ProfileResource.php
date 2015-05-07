@@ -13,5 +13,11 @@ Class ProfileResource extends RestResource{
         ));
     }
 
+    public function fetch($id = FALSE){
+        return new JsonResponse(array(
+            "fetch"  =>  "ohoh"
+        ));
+    }
+
 
 }

@@ -6,3 +6,4 @@ require_once "core/JsonResponse.php";
 require_once "core/RestResource.php";
 
 $app = new \Puck\Core\Puck();
+$app->run();
