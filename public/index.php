@@ -6,7 +6,7 @@
  * Time: 14:09
  */
 
-echo "hi";
+//echo "hi";
 
 require __DIR__ . "/../framework/bootstrap.php";
 //require __DIR__ . "/../module/profile/ProfileResource.php";

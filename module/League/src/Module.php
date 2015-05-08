@@ -17,6 +17,10 @@ class Module {
 
     public function getRouteConfig($sm){
         return array(
+            "/hulk/team/:id" =>  array(
+                "controller"    =>  "League\\Profile\\ProfileResource",
+                "actions"       =>  array("delete", "create")
+            ),
             "/hulk/profile/:id" =>  array(
                 "controller"    =>  "League\\Profile\\ProfileResource",
                 "actions"       =>  array(
