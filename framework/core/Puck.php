@@ -131,56 +131,35 @@ class ServiceManager extends PuckModule {
 
 class RouteManager extends PuckComponent{
     private $routes = array();
-    private $all_routes_pattern = "";
 
     private function parseRoute($url){
-//        $regExp = "/";
-        $regExp = "";
+        $regExp = "/";
         $parts = explode("/", $url);
         $params = array();
 
         foreach($parts as $part){
             if($part !== ""){
-                if($param = preg_match('/^:(.+)/', $part)){
+                if(preg_match('/^:(.+)/', $part, $matchParams)){
                     //route param
-                    $regExp .= '\/.+';
-                    array_push($params, $param);
+                    $regExp .= '\/(.+)';
+                    array_shift($matchParams);
+                    $params = array_merge($params, $matchParams);
                 }else{
                     //route part
                     $regExp .= '\/'.$part;
                 }
             }
         }
-//        $regExp .= "/";
+        $regExp .= "/";
         return array(
             "regExp" =>  $regExp,
             "params" =>  $params,
         );
     }
 
-    private function add_to_pattern($regExp){
-
-//        print_r('______$regExp_____');
-//        print_r($regExp);
-
-        $this->all_routes_pattern .= ($this->all_routes_pattern === "" ? "({$regExp})" : "|({$regExp})");
-
-//        print_r('$this->all_routes_pattern');
-//        print_r($this->all_routes_pattern);
-
-    }
     private function addRoute($url, $routeConfig){
-
-//        print_r('$this->parseRoute($url)');
-//        print_r($this->parseRoute($url));
-
         $parsedConfig = array_merge($routeConfig, $this->parseRoute($url));
-
-//        print_r('$parsedConfig');
-//        print_r($parsedConfig);
-
         $this->routes[$parsedConfig['regExp']] = $parsedConfig;
-        $this->add_to_pattern($parsedConfig['regExp']);
     }
 
     public function addModuleRoutes($routes){
@@ -192,10 +171,6 @@ class RouteManager extends PuckComponent{
     public function get_routes(){
         return $this->routes;
     }
-
-    public function get_all_routes_pattern(){
-        return $this->all_routes_pattern;
-    }
 }
 
 class Router extends PuckComponent{
@@ -205,15 +180,31 @@ class Router extends PuckComponent{
         print_r("REQUEST_URI\n");
         print_r($_SERVER['REQUEST_URI']);
 //        $_SERVER['REQUEST_METHOD'];
-        $all_routes_pattern = $this->getComponent("RouteManager")->get_all_routes_pattern();
+        $all_routes = $this->getComponent("RouteManager")->get_routes();
 
-        print_r("\nall_routes_pattern\n");
-        print_r($all_routes_pattern);
-        print_r("\nroute match result\n");
+        foreach($all_routes as $regExp => $routeConfig){
+            if(preg_match($regExp, $route, $matchParams)){
 
-        print_r(preg_match('/'.$all_routes_pattern.'/', $route, $matches));
+                array_shift($matchParams);
 
-        print_r($matches);
+                print_r("\n".'$regExp'."\n");
+                print_r($regExp."\n");
+                print_r('$route'."\n");
+                print_r($route."\n");
+                print_r('$matchParams'."\n");
+                print_r($matchParams);
+                print_r("\n".'$routeConfig'."\n");
+                print_r($routeConfig);
+            }
+        }
+
+//        print_r("\nall_routes_pattern\n");
+////        print_r($all_routes_pattern);
+//        print_r("\nroute match result\n");
+
+//        print_r(preg_match('/'.$all_routes_pattern.'/', $route, $matches));
+
+//        print_r($matches);
 
     }
 
