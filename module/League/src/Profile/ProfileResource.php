@@ -2,8 +2,8 @@
 
 namespace League\Profile;
 
-use Puck\Core\RestResource;
-use Puck\Core\JsonResponse;
+use Puck\Rest\RestResource;
+use Puck\Response\JsonResponse;
 
 Class ProfileResource extends RestResource{
 

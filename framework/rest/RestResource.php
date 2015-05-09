@@ -6,7 +6,9 @@
  * Time: 16:03
  */
 
-namespace Puck\Core;
+namespace Puck\Rest;
+
+use Puck\Response\ApiProblem;
 
 class RestResource {
     /**

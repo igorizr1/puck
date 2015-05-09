@@ -18,38 +18,68 @@ class Module {
     public function getRouteConfig($sm){
         return array(
             "/hulk/team/:id" =>  array(
-                "controller"    =>  "League\\Profile\\ProfileResource",
-                "actions"       =>  array("delete", "create")
-            ),
-            "/hulk/profile/:id" =>  array(
-                "controller"    =>  "League\\Profile\\ProfileResource",
-                "actions"       =>  array(
-                    "delete"    =>  array(
+                "resource"    =>  "League\\Profile\\ProfileResource",
+                "methods"       =>  array(
+                    "GET"    =>  array(
                         "validator"     =>  "Profile/profile_create.json",
                         "auth_required" =>  TRUE,
                         "acl"
                     ),
-                    "create"    =>  array(
-
+                    "POST"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "deleteList"    =>  array(
-
+                )
+            ),
+            "/hulk/profile/:id" =>  array(
+                "resource"    =>  "League\\Profile\\ProfileResource",
+                "methods"       =>  array(
+                    "DELETE"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "fetch"    =>  array(
-
+                    "GET"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "fetchAll"    =>  array(
-
+                    "POST"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "patch"    =>  array(
-
+                    "PUT"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "replaceList"    =>  array(
-
+                )
+            ),
+            "/hulk/profile" =>  array(
+                "resource"    =>  "League\\Profile\\ProfileResource",
+                "methods"       =>  array(
+                    "DELETE"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
                     ),
-                    "update"    =>  array(
-
-                    )
+                    "GET"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
+                    ),
+                    "POST"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
+                    ),
+                    "PUT"    =>  array(
+                        "validator"     =>  "Profile/profile_create.json",
+                        "auth_required" =>  TRUE,
+                        "acl"
+                    ),
                 )
             )
         );

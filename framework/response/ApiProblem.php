@@ -6,7 +6,7 @@
  * Time: 16:02
  */
 
-namespace Puck\Core;
+namespace Puck\Response;
 
 class ApiProblem{
 

@@ -6,13 +6,13 @@
  * Time: 16:03
  */
 
-namespace Puck\Core;
+namespace Puck\Response;
 
 class JsonResponse{
-    public function __construct($data){
+    public function __construct($data = FALSE){
         $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
         header('Content-Type: application/json');
         header($protocol.' 200 OK');
-        echo json_encode($data);
+        if($data)echo json_encode($data);
     }
 }

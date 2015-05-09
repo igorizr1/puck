@@ -4,3 +4,6 @@
 
 http://doctrine-orm.readthedocs.org/en/latest/reference/configuration.html
 https://nyukapiszka.wordpress.com/2013/03/02/install-doctrine2-using-composer/
+
+
+- autoload
