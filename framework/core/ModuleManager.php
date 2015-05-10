@@ -23,15 +23,18 @@ class ModuleManager extends PuckComponent{
          * and save it in modules variable
          */
         $routeManager = $this->getComponent("RouteManager");
+        $configManager = $this->getComponent("ConfigManager");
 
-        foreach($this->getComponent("ConfigManager")->getModuleListConfig() as $module_name){
+        foreach($configManager->getModuleListConfig() as $module_name){
             $module_file = require_once APPLICATION_PATH."/module/{$module_name}/src/Module.php";
             $module_namespace = "\\{$module_name}\\Module";
             $module = new $module_namespace;
 
             $this->modules[$module_name] = $module;
+            $cm = $this->getComponent("ServiceManager");
+//            $routeManager->addModuleRoutes($module->getRouteConfig($this->getComponent("ServiceManager")));
 
-            $routeManager->addModuleRoutes($module->getRouteConfig($this->getComponent("ServiceManager")));
+            $configManager->addModuleConfig($module->getConfig($cm));
         }
         return $this->modules;
     }

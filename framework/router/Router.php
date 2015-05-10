@@ -53,15 +53,15 @@ class Router extends PuckComponent{
                     }
                 }
                 // error: method not allowed
-                return new ApiProblem();
+                return new ApiProblem(405);
             }
         }
         // error: Route not Found
-        return new ApiProblem();
+        return new ApiProblem(404);
     }
 
     private function getResourceAction($routeType){
-        if(array_key_exists($routeType, self::$method_actions)){
+        if(array_key_exists($routeType, self::$method_actions) && array_key_exists($this->REQUEST_METHOD, self::$method_actions[$routeType])){
             return self::$method_actions[$routeType][$this->REQUEST_METHOD];
         }
         return FALSE;

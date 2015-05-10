@@ -1,21 +1,69 @@
 <?php
 return array(
     "routes"        =>  array(
-        "/hulk/profile/:id" =>  array(
-            "controller"    =>  "League\\Profile\\ProfileResource",
+        "/hulk/team/:id" =>  array(
+            "resource"    =>  "League\\Profile\\ProfileResource",
             "methods"       =>  array(
-                "collection"    =>  array(
-                    "POST"   =>  array(
-                        "validator"     =>  "Profile/profile_create.json",
-                        "auth_required" =>  TRUE
-                    ),
-                    "GET"    =>  array(),
-                    "PUT",
-                    "DELETE" =>  array(
-                        "auth_required" =>  FALSE
-                    )
+                "GET"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
                 ),
-                "entity"        =>  array("POST", "GET", "PUT", "DELETE")
+                "POST"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+            )
+        ),
+        "/hulk/profile/:id" =>  array(
+            "resource"    =>  "League\\Profile\\ProfileResource",
+            "methods"       =>  array(
+                "DELETE"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "GET"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "POST"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "PUT"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+            )
+        ),
+        "/hulk/profile" =>  array(
+            "resource"    =>  "League\\Profile\\ProfileResource",
+            "methods"       =>  array(
+                "DELETE"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "GET"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "POST"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
+                "PUT"    =>  array(
+                    "validator"     =>  "Profile/profile_create.json",
+                    "auth_required" =>  TRUE,
+                    "acl"
+                ),
             )
         )
     )

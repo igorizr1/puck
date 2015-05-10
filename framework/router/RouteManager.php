@@ -11,9 +11,9 @@ namespace Puck\Router;
 use Puck\Core\PuckComponent;
 
 class RouteManager extends PuckComponent{
-    private $routes = array();
+    private $routes;
 
-    private function parseRoute($url){
+    private static function parseRoute($url){
         $regExp = "/^";
         $parts = explode("/", $url);
         $params = array();
@@ -43,17 +43,20 @@ class RouteManager extends PuckComponent{
     }
 
     private function addRoute($url, $routeConfig){
-        $parsedConfig = array_merge($routeConfig, $this->parseRoute($url));
-        $this->routes[$parsedConfig['regExp']] = $parsedConfig;
+        $parsedConfig = array_merge($routeConfig, self::parseRoute($url));
+        return $this->routes[$parsedConfig['regExp']] = $parsedConfig;
     }
 
-    public function addModuleRoutes($routes){
+    private function get_from_config(){
+        $routes = $this->getComponent("ConfigManager")->getRouteConfig();
         foreach($routes as $url => $routeConfig){
             $this->addRoute($url, $routeConfig);
         }
     }
 
     public function get_routes(){
+        if(!$this->routes)
+            $this->get_from_config();
         return $this->routes;
     }
 }

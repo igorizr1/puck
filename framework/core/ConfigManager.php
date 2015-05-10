@@ -10,19 +10,36 @@ namespace Puck\Core;
 
 
 class ConfigManager extends PuckComponent{
-    private $configs = array();
+    private $configs = array(
+        "modules"  =>  FALSE,
+        "routes"   =>  FALSE,
+    );
 
     public function __construct($cm){
         parent::__construct($cm);
-        $this->includeConfigs();
+        $this->includeAppConfigs();
     }
 
-    private function includeConfigs(){
-        $this->configs = require APPLICATION_PATH."/config/development.config.php";
+    private function merge_config($config){
+        $this->configs = array_merge($this->configs, $config);
+    }
+
+    private function includeAppConfigs(){
+        $development_config = require_once APPLICATION_PATH."/config/development.config.php";
+        $this->merge_config($development_config);
+    }
+
+    public function addModuleConfig($config){
+        $this->merge_config($config);
     }
 
     public function getModuleListConfig(){
         return $this->configs['modules'];
     }
+
+    public function getRouteConfig(){
+        return $this->configs['routes'];
+    }
+
 
 }
