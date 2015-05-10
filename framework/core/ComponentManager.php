@@ -8,11 +8,15 @@
 
 namespace Puck\Core;
 
+use Puck\Helpers\Singleton;
 
-class ComponentManager{
+final class ComponentManager extends Singleton{
     private $components = array();
 
     public function register($name, $instance){
+
+//        echo $instance::getClassName();/
+
         return $this->components[$name] = $instance;
     }
 

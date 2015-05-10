@@ -10,6 +10,7 @@ namespace Puck\Router;
 
 use Puck\Core\PuckComponent;
 use Puck\Response\ApiProblem;
+use Puck\Core\ComponentManager;
 
 class Router extends PuckComponent{
 
@@ -31,8 +32,8 @@ class Router extends PuckComponent{
         ),
     );
 
-    public function __construct($cm){
-        parent::__construct($cm);
+    protected function init(ComponentManager $cm){
+        parent::init($cm);
         $this->REQUEST_URI = $_SERVER['REQUEST_URI'];
         $this->REQUEST_METHOD = $_SERVER['REQUEST_METHOD'];
     }

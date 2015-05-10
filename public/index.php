@@ -6,21 +6,10 @@
  * Time: 14:09
  */
 
-//echo "hi";
-
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
 
 if (!defined('APPLICATION_PATH')) {
     define('APPLICATION_PATH', realpath(__DIR__ . '/../'));
 }
 
 require __DIR__ . "/../framework/bootstrap.php";
-
-
-//echo APPLICATION_PATH;
-
-//require __DIR__ . "/../module/profile/ProfileResource.php";
-
-//use Example\Profile\ProfileResource;
-
-//$pr = new ProfileResource();
-//$pr->create();

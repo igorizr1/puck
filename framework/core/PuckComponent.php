@@ -8,6 +8,8 @@
 
 namespace Puck\Core;
 
+use Puck\Helpers\SingletonCM;
+
 
 /**
  * Class PuckComponent
@@ -16,18 +18,17 @@ namespace Puck\Core;
  * Base Component Class
  * Should be Singleton
  */
-class PuckComponent {
+
+class PuckComponent extends SingletonCM{
     private $cm;
 
-    public function __construct($cm){
-        $this->cm = $cm;
+    protected function getComponent($name){
+        return $this->cm->get($name);
     }
 
-    private function getComponentManager(){
-        return $this->cm;
-    }
-
-    public function getComponent($name){
-        return $this->getComponentManager()->get($name);
+    protected function init(ComponentManager $cm){
+        if(!$this->cm)
+            $this->cm = $cm;
+        return $this;
     }
 }

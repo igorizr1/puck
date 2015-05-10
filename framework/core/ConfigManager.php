@@ -15,8 +15,8 @@ class ConfigManager extends PuckComponent{
         "routes"   =>  FALSE,
     );
 
-    public function __construct($cm){
-        parent::__construct($cm);
+    protected function init(ComponentManager $cm){
+        parent::init($cm);
         $this->includeAppConfigs();
     }
 
@@ -40,6 +40,5 @@ class ConfigManager extends PuckComponent{
     public function getRouteConfig(){
         return $this->configs['routes'];
     }
-
 
 }

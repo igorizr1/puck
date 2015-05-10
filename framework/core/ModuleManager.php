@@ -12,8 +12,8 @@ namespace Puck\Core;
 class ModuleManager extends PuckComponent{
     private $modules = array();
 
-    public function __construct($cm){
-        parent::__construct($cm);
+    protected function init(ComponentManager $cm){
+        parent::init($cm);
         $this->includeModules();
     }
 

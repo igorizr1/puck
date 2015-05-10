@@ -8,37 +8,25 @@
 
 namespace Puck\Core;
 
+use Puck\Helpers\Singleton;
 use Puck\Router\RouteManager;
 use Puck\Router\Router;
+use Puck\Modules\ServiceManager;
 
-class Puck {
-    private $ComponentManager;
+final class Puck extends Singleton{
 
-    public function run(){
-        $cm = new ComponentManager();
-        $this->ComponentManager = $cm;
-
-        $cm->register("RouteManager", new RouteManager($cm));
-        $cm->register("ServiceManager", new ServiceManager($cm));
-
-        $cm->register("ConfigManager", new ConfigManager($cm));
-        $cm->register("ModuleManager", new ModuleManager($cm));
-        $cm->register("Router", new Router($cm));
-
-        $this->findRouteMatch();
-    }
-
-    private function findRouteMatch(){
-        $router = $this->ComponentManager->get("Router");
+    /**
+     * initialize
+     */
+    protected function init(){
+        $cm = ComponentManager::getInstance();
+        $cm->register("ConfigManager", ConfigManager::getInstance($cm));
+        $cm->register("RouteManager", RouteManager::getInstance($cm));
+        $cm->register("ServiceManager", ServiceManager::getInstance($cm));
+        $cm->register("ModuleManager", ModuleManager::getInstance($cm));
+//
+        $router = Router::getInstance($cm);
         $router->findRoute();
+        $cm->register("Router", $router);
     }
-
-}
-
-class PuckModule extends PuckComponent {
-
-}
-
-class ServiceManager extends PuckModule {
-
 }

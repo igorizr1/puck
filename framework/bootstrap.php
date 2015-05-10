@@ -1,5 +1,7 @@
 <?php
 
+require_once "helpers/Multiton.php";
+
 require_once "response/ApiProblem.php";
 require_once "response/JsonResponse.php";
 
@@ -14,7 +16,10 @@ require_once "router/ResourceInitializer.php";
 require_once "router/RouteManager.php";
 require_once "router/Router.php";
 
+require_once "core/PuckModule.php";
+require_once "modules/ServiceManager.php";
+
 require_once "core/Puck.php";
 
-$app = new \Puck\Core\Puck();
-$app->run();
+//$app = \Puck\Core\Puck::run();
+$app = \Puck\Core\Puck::getInstance();
