@@ -6,9 +6,9 @@
  * Time: 16:03
  */
 
-namespace Puck\Rest;
+namespace Bonny\Rest;
 
-use Puck\Response\ApiProblem;
+use Bonny\Response\ApiProblem;
 
 class RestResource {
     /**
@@ -17,7 +17,7 @@ class RestResource {
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function create($data = array())
+    public static function create($data = array())
     {
         return new ApiProblem(405, 'The POST method has not been defined');
 //        return new ApiProblem(404, array(
@@ -31,7 +31,7 @@ class RestResource {
      * @param  mixed $id
      * @return ApiProblem|mixed
      */
-    public function delete($id = FALSE)
+    public static function delete($id = FALSE)
     {
         return new ApiProblem(405, 'The DELETE method has not been defined for individual resources');
     }
@@ -42,7 +42,7 @@ class RestResource {
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function deleteList($data)
+    public static function deleteList($data)
     {
         return new ApiProblem(405, 'The DELETE method has not been defined for collections');
     }
@@ -53,7 +53,7 @@ class RestResource {
      * @param  mixed $id
      * @return ApiProblem|mixed
      */
-    public function fetch($id)
+    public static function fetch($id)
     {
         return new ApiProblem(405, 'The GET method has not been defined for individual resources');
     }
@@ -64,7 +64,7 @@ class RestResource {
      * @param  array $params
      * @return ApiProblem|mixed
      */
-    public function fetchAll($params = array()){
+    public static function fetchAll($params = array()){
         return new ApiProblem(405, 'The GET method has not been defined for collections');
     }
 
@@ -75,7 +75,7 @@ class RestResource {
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function patch($id, $data)
+    public static function patch($id, $data)
     {
         return new ApiProblem(405, 'The PATCH method has not been defined for individual resources');
     }
@@ -86,7 +86,7 @@ class RestResource {
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function replaceList($data)
+    public static function replaceList($data)
     {
         return new ApiProblem(405, 'The PUT method has not been defined for collections');
     }
@@ -98,12 +98,12 @@ class RestResource {
      * @param  mixed $data
      * @return ApiProblem|mixed
      */
-    public function update($id, $data)
+    public static function update($id, $data)
     {
         return new ApiProblem(405, 'The PUT method has not been defined for individual resources');
     }
 
-    public function options(){
+    public static function options(){
         // get assigned methods list from config
     }
 }

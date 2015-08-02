@@ -12,4 +12,22 @@ if (!defined('APPLICATION_PATH')) {
     define('APPLICATION_PATH', realpath(__DIR__ . '/../'));
 }
 
-require __DIR__ . "/../framework/bootstrap.php";
+$app = require __DIR__ . "/../bonny/bootstrap.php";
+
+use Bonny\Core\Autoloader;
+
+
+
+Autoloader::getInstance()->addConfig(
+    require __DIR__.'/../config/autoloader.config.php'
+);
+
+$modules = require __DIR__.'/../config/modules.config.php';
+
+foreach($modules as $module){
+    $name = "{$module}\\Route";
+
+    $name::getInstance();
+}
+
+return $app = \Bonny\Core\Bonny::getInstance();

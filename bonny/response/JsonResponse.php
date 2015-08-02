@@ -6,10 +6,10 @@
  * Time: 16:03
  */
 
-namespace Puck\Response;
+namespace Bonny\Response;
 
 class JsonResponse{
-    public function __construct($data = FALSE){
+    public function __construct($data = array()){
         $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
         header('Content-Type: application/json');
         header($protocol.' 200 OK');

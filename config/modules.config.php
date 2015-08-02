@@ -7,7 +7,6 @@
  */
 
 return array(
-    "modules"   =>  array(
-        "League"
-    )
+    "Invoice",
+//    "Profile"
 );

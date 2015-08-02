@@ -4,3 +4,4 @@
 /.idea
 /**/.idea
 /composer.lock
+.DS_Store

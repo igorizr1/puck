@@ -6,7 +6,7 @@
  * Time: 16:02
  */
 
-namespace Puck\Response;
+namespace Bonny\Response;
 
 class ApiProblem{
 

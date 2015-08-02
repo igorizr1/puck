@@ -6,9 +6,9 @@
  * Time: 15:23
  */
 
-namespace Puck\Helpers;
+namespace Bonny\Helpers;
 
-use Puck\Core\ComponentManager;
+use Bonny\Core\ComponentManager;
 
 
 /**
@@ -33,7 +33,7 @@ abstract class MultitonAbstract
         $className = static::getClassName();
         if (!(self::$instances[$className] instanceof $className)) {
             $instance = new $className();
-            $instance->init();
+//            $instance->init();
             self::$instances[$className] = $instance;
         }
         return self::$instances[$className];
@@ -67,7 +67,8 @@ abstract class MultitonAbstract
     /**
      * Конструктор закрыт
      */
-    final protected function __construct(){}
+    protected function __construct(){}
+//    final protected function __construct(){}
 
     /**
      * Клонирование запрещено
@@ -111,11 +112,10 @@ abstract class SingletonAbstract extends MultitonAbstract
         parent::removeInstance();
     }
 
-    abstract protected function init();
 }
 
 abstract class Singleton extends SingletonAbstract{
-    protected function init(){}
+
 }
 
 /**
